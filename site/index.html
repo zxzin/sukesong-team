@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#2059f2">
+  <meta name="description" content="Zinx 找队友：有点子，有创意，有审美。一起做产品，也欢迎赛后长期合作。">
+  <title>苏客松组队 · Zinx</title>
+  <style>
+@font-face{font-family:Zinx;src:url('assets/zinx-text-regular.woff?v=0a5dd6ba2c25') format('woff');font-weight:400;font-display:swap}
+@font-face{font-family:Zinx;src:url('assets/zinx-text-bold.woff?v=96e6d1d11097') format('woff');font-weight:700;font-display:swap}
+@font-face{font-family:ZinxDisplay;src:url('assets/zinx-display-heavy.woff?v=ce4f1b603386') format('woff');font-weight:800;font-display:swap}
+:root{--paper:#f6f8fc;--ink:#17263a;--muted:#4f6077;--blue:#2059f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:16px}body{margin:0;background:var(--paper);color:var(--ink);font:400 14px/1.55 Zinx,'PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}button{color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.wrap{width:min(1220px,calc(100% - 64px));margin:auto}.skip{position:absolute;top:-80px;left:16px;padding:10px 16px;background:white;z-index:99}.skip:focus{top:10px}
+.page-header{height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font:800 21px/1 ZinxDisplay,Zinx,sans-serif;letter-spacing:-.7px;display:inline-flex;align-items:center;min-height:40px}.page-nav{display:flex;gap:4px;padding:4px;background:#e8edf7;border-radius:13px}.page-link{display:inline-flex;align-items:center;gap:9px;min-height:34px;padding:6px 13px;border-radius:10px;font-size:12px;font-weight:700}.page-link span{font-size:10px;font-weight:400;color:var(--muted)}.page-link[aria-current=page]{background:white;color:var(--blue);box-shadow:0 2px 5px #17263a08}
+[hidden]{display:none!important}.page-view{min-height:612px}.recruit-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:end;padding:20px 4px 24px}.eyebrow{font-size:12px;color:var(--muted);margin:0 0 7px}h1{font:800 62px/1.15 ZinxDisplay,Zinx,sans-serif;letter-spacing:-1.5px;margin:0;color:var(--ink)}.hero-line{font-size:24px;font-weight:700;color:var(--blue);line-height:1.5;margin:8px 0 0;letter-spacing:-.4px}.team-principle{display:grid;grid-template-columns:auto 1fr;gap:23px;align-items:center;padding:20px 24px;background:#eaf1cf;border-radius:20px;color:#263411}.team-principle .eyebrow{font-size:10px;color:#516139;margin:0 0 3px}.team-principle h2{font:700 42px/1.2 Zinx,sans-serif;letter-spacing:-1.4px;white-space:nowrap;margin:0}.principle-caption{font-size:11px;line-height:1.5;margin:0 0 8px;color:#516139}.principle-points{display:flex;gap:16px;list-style:none;padding:0;margin:0;font-size:17px;line-height:1.4;font-weight:700;white-space:nowrap}.principle-note{font-size:11px;line-height:1.6;color:#516139;margin:8px 0 0}
+.recruit-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:14px}.recruit-card{border-radius:22px;padding:23px 25px;min-width:0;background:white}.card-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:14px}.card-head h2{font-size:19px;line-height:1.4;margin:0}.card-head span{font-size:11px;opacity:.65}.my-card{background:var(--blue);color:white}.my-card h3{font-size:24px;font-weight:700;line-height:1.45;margin:0 0 9px}.my-card>p{font-size:13px;line-height:1.8;max-width:420px;margin:0;color:#fff}.my-card .credit{font-size:12px;line-height:1.75;color:#e2eaff;margin-top:19px;padding-top:13px;border-top:1px solid #ffffff38}.card-more{display:inline-flex;align-items:center;gap:10px;margin-top:14px;min-height:32px;font-size:12px;font-weight:700}.card-more:hover{text-decoration:underline}.wish-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}.wish-list li{display:grid;grid-template-columns:26px 66px 1fr;gap:10px;align-items:center;min-height:31px}.wish-index{width:25px;height:25px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#edf2ff;color:#2e54a0;font-size:10px}.wish-list strong{font-size:15px;font-weight:700;white-space:nowrap}.wish-list p{font-size:12px;line-height:1.65;color:var(--muted);margin:0}.wish-footnote{font-size:11px;line-height:1.6;color:var(--muted);margin:14px 0 0}.interest-label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);margin:14px 0 7px}.interest-label span:last-child{font-size:10px}
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:4px;gap:4px;background:#edf1fb;border-radius:12px;margin:0}
+.role{display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid transparent;background:transparent;border-radius:9px;padding:8px 3px;min-height:37px;font-size:11px;font-weight:700;color:#3e526f;transition:background .2s,color .2s}.role::after{content:'＋';font-size:12px;font-weight:400}.role[aria-pressed=true]{color:var(--choice-ink);border-color:rgba(255,255,255,.9);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.28) 65%,rgba(255,255,255,.56)),var(--choice-color);backdrop-filter:blur(8px) saturate(1.2);-webkit-backdrop-filter:blur(8px) saturate(1.2);box-shadow:inset 0 1px 0 #fff}.role[aria-pressed=true]::after{content:'✓'}.role:hover{color:#122e62}
+.contact-panel{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:14px;padding:18px 24px;border:1px solid #dce4f3;border-radius:20px;background:#edf2ff}.contact-panel h2{font-size:16px;line-height:1.5;margin:0 0 5px}.contact-panel p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}.contact-panel .long-term{font-size:11px;margin-top:4px}.contact-actions{flex-shrink:0;text-align:center}.contact-actions>span{display:block;font-size:11px;color:var(--muted);margin-top:6px}.button{display:inline-flex;align-items:center;justify-content:center;gap:15px;min-height:42px;padding:10px 17px;border:0;border-radius:11px;background:var(--blue);color:white;font-weight:700;font-size:12px;transition:background .2s}.button:hover{background:#1549d9}.button.secondary{background:white;color:var(--ink);border:1px solid #dce4f3}.button.secondary:hover{background:#edf2ff}.arrow{font-size:18px;font-family:sans-serif;font-weight:400;line-height:1}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.works{padding:14px 0 0}.section-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}.section-top h2{font-size:28px;line-height:1.4;font-weight:700;margin:0}.section-top p{font-size:12px;color:var(--muted);margin:3px 0 0}.section-top>span{font-size:11px;color:var(--muted)}.works-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.works-actions>span{font-size:12px;color:var(--muted)}.works-actions>div{display:flex;gap:8px}
+.page-footer{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:12px 0 14px;color:var(--muted);font-size:11px}
+@supports not (backdrop-filter:blur(8px)){.role[aria-pressed=true]{background:var(--choice-color)}}
+@media(prefers-reduced-transparency:reduce){.role[aria-pressed=true]{background:var(--choice-color);backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(max-width:1050px){.wrap{width:calc(100% - 40px)}.recruit-hero{gap:24px}.recruit-card{padding:21px}.roles{grid-template-columns:repeat(2,minmax(0,1fr))}.page-view{min-height:0}.my-card h3{font-size:23px}.team-principle{padding:18px;gap:17px}.principle-points{gap:10px;font-size:15px}.principle-note{max-width:180px}.wish-list li{column-gap:7px}}
+@media(max-width:760px){.wrap{width:calc(100% - 28px)}.page-header{height:62px;gap:12px}.brand{font-size:20px}.page-link{font-size:12px;gap:6px;padding:6px 10px}.page-link span{font-size:9px}.recruit-hero{grid-template-columns:1fr;gap:18px;padding:17px 3px 19px}h1{font-size:47px}.hero-line{font-size:21px;margin-top:6px}.team-principle{padding:17px 18px;gap:18px;border-radius:17px}.team-principle h2{font-size:36px}.principle-points{font-size:15px;gap:12px}.principle-note{font-size:10px;max-width:none;margin-top:6px}.principle-caption{font-size:10px;margin-bottom:5px}.recruit-grid{grid-template-columns:1fr;gap:12px}.recruit-card{padding:20px;border-radius:19px}.card-head{margin-bottom:14px}.card-head h2{font-size:17px}.my-card h3{font-size:22px}.my-card>p{font-size:13px}.my-card .credit{font-size:12px;margin-top:13px}.card-more{margin-top:10px}.wish-list{gap:12px}.wish-list li{grid-template-columns:24px 58px 1fr;gap:8px}.wish-index{width:24px;height:24px}.wish-list strong{font-size:14px}.wish-list p{font-size:12px}.wish-footnote{font-size:11px;margin-top:14px}.role{font-size:12px;min-height:42px}.contact-panel{align-items:stretch;flex-direction:column;gap:14px;padding:18px;margin-top:12px}.contact-panel h2{font-size:16px}.contact-panel p{font-size:12px}.contact-actions{text-align:left}.contact-actions>span{margin-top:8px}.button{min-height:44px;font-size:12px}.section-top{margin-bottom:13px;align-items:end}.section-top h2{font-size:25px}.section-top p{font-size:11px}.section-top>span{font-size:10px}.works{padding-top:13px}.works-actions{align-items:stretch;flex-direction:column}.works-actions>div{justify-content:space-between}.works-actions>span{font-size:11px}.page-footer{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{.roles,.contact-actions,.page-header,.works-actions,dialog{display:none!important}.wrap{width:100%}.page-view[hidden]{display:block!important}.page-view{min-height:0;break-after:page}body{background:white}}
+.resume-gallery{--rsg-ink:var(--ink,#17263a);--rsg-muted:var(--muted,#4f6077);display:grid;grid-template-columns:minmax(0,.38fr) minmax(0,.62fr);grid-template-rows:252px minmax(0,1fr);gap:12px;height:480px;color:var(--rsg-ink)}
+.resume-gallery *{box-sizing:border-box}
+.resume-gallery figure,.resume-gallery h3,.resume-gallery h4,.resume-gallery p{margin:0}
+.resume-gallery img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.resume-gallery figure{min-width:0;min-height:0}
+.resume-gallery figcaption{font-size:11px;line-height:1.5;color:var(--rsg-muted)}
+.resume-gallery figcaption strong{font-weight:400;color:var(--rsg-ink)}
+.rsg-heading{min-width:0;margin:0}
+.rsg-heading h3,.resume-gallery .rsg-group-title{font:700 16px/1.4 Zinx,'PingFang SC',sans-serif;letter-spacing:0}
+.rsg-heading p{font-size:12px;line-height:1.5;color:var(--rsg-muted);margin-top:1px}
+.rsg-yy{grid-column:1;grid-row:1/3;min-width:0;min-height:0;background:#e7efff;border-radius:18px;padding:12px;display:grid;grid-template-rows:36px 160px minmax(0,1fr) 18px;gap:8px}
+.rsg-yy-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;min-height:0}
+.rsg-yy-banner{background:#d5f3fb;border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:6px}
+.rsg-yy-banner>img{height:125px;min-height:0;object-fit:contain}
+.rsg-yy-banner figcaption{padding:3px 2px 0;font-size:11px}
+.rsg-yy-stickers{padding:8px;background:#fff1b4;border-radius:12px;display:flex;flex-direction:column;min-height:0}
+.rsg-yy-stickers figcaption{font-size:12px;color:#504022;line-height:1.5}
+.rsg-sticker-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:4px;align-items:center;flex:1;min-height:0;padding-top:4px}
+.rsg-sticker-grid img{width:100%;height:100%;min-height:0;object-fit:contain}
+.rsg-yy-bottom{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:8px;min-height:0;min-width:0}
+.rsg-character,.rsg-extra-stickers{padding:5px 7px;border-radius:12px;background:#dce5ff;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.rsg-character-pair{display:grid;grid-template-columns:.75fr 1.25fr;gap:0;align-items:center;flex:1;min-height:0}
+.rsg-character-pair img{height:65px;object-fit:contain}
+.rsg-character figcaption,.rsg-extra-stickers figcaption{text-align:center;font-size:11px;padding-top:2px}
+.rsg-wardrobe{display:flex;align-items:center;justify-content:center;gap:8px;padding:6px;border-radius:12px;background:#f4f7ff}
+.rsg-wardrobe>img{width:43%;height:80px;object-fit:contain;flex-shrink:0}
+.rsg-wardrobe figcaption{font-size:12px;min-width:0}
+.rsg-extra-stickers{background:#e4efda}
+.rsg-extra-stickers>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;align-items:center;flex:1;min-height:0}
+.rsg-extra-stickers img{height:65px;object-fit:contain}
+.rsg-companion{padding:4px;display:flex;flex-direction:column;justify-content:center;color:#28465c;min-width:0;min-height:0}
+.rsg-companion>span{font-size:10px;line-height:1.4;color:var(--rsg-muted)}
+.rsg-companion h4{font-size:13px;font-weight:700;line-height:1.5;margin:2px 0}
+.rsg-companion p{font-size:12px;line-height:1.5}
+.resume-gallery .rsg-yy-credit{font-size:11px;line-height:1.6;color:#365274;align-self:end}
+.rsg-products{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:20px minmax(0,1fr);gap:6px 8px;min-width:0;min-height:0}
+.resume-gallery .rsg-group-title{grid-column:1/-1;grid-row:1}
+.rsg-product{min-width:0;min-height:0;background:#fff;border-radius:15px;padding:9px;display:flex;flex-direction:column}
+.rsg-product-heading{min-width:0;margin-bottom:4px}
+.rsg-product-heading h4{font:700 14px/1.35 Zinx,'PingFang SC',sans-serif;letter-spacing:0}
+.rsg-product-heading p{font-size:11px;line-height:1.45;color:var(--rsg-muted);margin-top:1px}
+.rsg-product-image{height:80px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:#fff7df;padding:3px}
+.rsg-product-image>img{height:100%;width:100%;object-fit:contain}
+.rsg-product figure figcaption{display:block;font-size:10px;line-height:1.5;margin-top:3px}
+.rsg-monkex .rsg-product-image{background:#f2f7ed;padding:0}
+.rsg-court .rsg-product-image{background:#efedf8;padding:3px}
+.resume-gallery .rsg-product-story{font-size:12px;line-height:1.5;margin-top:5px;min-width:0}
+.resume-gallery .rsg-credit{font-size:10px;line-height:1.45;color:var(--rsg-muted);margin-top:auto;padding-top:5px;min-width:0;overflow-wrap:anywhere}
+.rsg-visual{grid-column:2;grid-row:2;background:#fff;border-radius:16px;padding:10px;display:grid;grid-template-columns:1.49684fr 1.77778fr .75fr 3.375fr .927389fr;grid-template-rows:22px minmax(0,1fr) 32px;gap:6px 7px;min-width:0;min-height:0}
+.rsg-visual>.rsg-heading{grid-column:1/-1;grid-row:1}
+.rsg-screen-ribbon,.rsg-art-ribbon{display:contents}
+.rsg-screen-ribbon>figure,.rsg-art-ribbon>figure{display:flex;flex-direction:column;justify-content:center;grid-row:2}
+.rsg-screen-ribbon img,.rsg-art-ribbon img{width:100%;height:96px;object-fit:contain;border-radius:8px}
+.rsg-screen-ribbon figcaption,.rsg-art-ribbon figcaption{padding-top:4px;font-size:11px;line-height:1.4;overflow-wrap:anywhere}
+.resume-gallery .rsg-source-note{grid-column:1/-1;grid-row:3;font-size:10px;line-height:1.5;color:var(--rsg-muted);min-width:0;align-self:end}
+@media(min-width:761px) and (max-width:1000px){
+ .resume-gallery{height:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:14px}
+ .rsg-yy,.rsg-products,.rsg-visual{grid-column:1;grid-row:auto}
+ .rsg-yy{grid-template-rows:36px 150px 104px 18px}
+ .rsg-yy-bottom{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr}
+ .rsg-products{grid-template-rows:20px 220px}
+ .rsg-visual{grid-template-rows:22px 128px 32px}
+}
+@media(max-width:760px){
+ .resume-gallery{height:auto;display:block}
+ .rsg-heading h3,.resume-gallery .rsg-group-title{font-size:17px;line-height:1.4}
+ .rsg-yy{display:block;border-radius:17px;padding:12px}
+ .rsg-yy>.rsg-heading{margin-bottom:9px}
+ .rsg-yy-top{height:145px;gap:8px}
+ .rsg-yy-banner>img{height:110px}
+ .rsg-yy-bottom{grid-template-rows:104px auto;margin-top:8px;gap:8px}
+ .rsg-character-pair img,.rsg-extra-stickers img{height:68px}
+ .rsg-wardrobe>img{height:82px}
+ .rsg-companion{min-height:100px;padding:7px}
+ .rsg-companion p{font-size:12px;line-height:1.55}
+ .resume-gallery .rsg-yy-credit{font-size:11px;margin-top:8px}
+ .rsg-products{display:grid;grid-template-columns:1fr;grid-template-rows:auto;gap:9px;margin-top:14px}
+ .resume-gallery .rsg-group-title{grid-column:1;grid-row:auto}
+ .rsg-product{display:grid;grid-template-columns:minmax(85px,.86fr) minmax(0,1.14fr);grid-template-rows:auto auto 1fr;gap:5px 11px;padding:12px;border-radius:17px;align-items:start}
+ .rsg-product-heading{grid-column:2;grid-row:1;margin:0}
+ .rsg-product-heading h4{font-size:16px;line-height:1.4;overflow-wrap:anywhere}
+ .rsg-product-heading p{font-size:12px;line-height:1.5;margin-top:2px}
+ .rsg-product>figure{grid-column:1;grid-row:1/4;min-width:0}
+ .rsg-product-image{height:112px;border-radius:11px}
+ .rsg-court .rsg-product-image{height:125px}
+ .rsg-product figure figcaption{font-size:11px;line-height:1.5;margin-top:4px}
+ .resume-gallery .rsg-product-story{grid-column:2;grid-row:2;font-size:12px;line-height:1.6;margin:0}
+ .resume-gallery .rsg-credit{grid-column:2;grid-row:3;align-self:end;font-size:11px;line-height:1.5;margin:0;padding:0}
+ .rsg-visual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;grid-template-areas:'title title' 'exhibit entrance' 'editorial style' 'david david' 'source source';gap:10px;margin-top:14px;padding:12px;border-radius:17px}
+ .rsg-visual>.rsg-heading{grid-area:title}
+ .rsg-screen-ribbon>figure,.rsg-art-ribbon>figure{grid-row:auto;display:block}
+ .rsg-screen-ribbon>figure:first-child{grid-area:exhibit}
+ .rsg-screen-ribbon>figure:nth-child(2){grid-area:entrance}
+ .rsg-editorial{grid-area:editorial}
+ .rsg-style{grid-area:style}
+ .rsg-david{grid-area:david}
+ .rsg-screen-ribbon img{height:105px}
+ .rsg-editorial img,.rsg-style img{height:165px}
+ .rsg-david img{height:auto;max-height:none}
+ .rsg-screen-ribbon figcaption,.rsg-art-ribbon figcaption{font-size:12px;line-height:1.5;padding-top:4px}
+ .resume-gallery .rsg-source-note{grid-area:source;font-size:11px;line-height:1.6;align-self:auto}
+}
+@media(max-width:360px){
+ .rsg-yy,.rsg-visual{padding:10px}
+ .rsg-yy-top{height:132px}
+ .rsg-yy-banner>img{height:96px}
+ .rsg-yy-stickers{padding:6px}
+ .rsg-yy-stickers figcaption{font-size:11px}
+ .rsg-yy-bottom{grid-template-rows:98px auto;gap:7px}
+ .rsg-character-pair img,.rsg-extra-stickers img{height:62px}
+ .rsg-wardrobe>img{height:75px}
+ .rsg-wardrobe{gap:4px}
+ .rsg-wardrobe figcaption{font-size:11px}
+ .rsg-product{padding:10px;column-gap:9px}
+ .rsg-product-image{height:103px}
+ .rsg-court .rsg-product-image{height:119px}
+ .rsg-screen-ribbon img{height:88px}
+ .rsg-editorial img,.rsg-style img{height:145px}
+}
+
+#invite-dialog{--si-ink:#17263a;--si-blue:#2059f2;--si-role-color:#dfe8ff;--si-role-ink:#183d99;width:min(590px,calc(100% - 28px));max-width:none;max-height:calc(100dvh - 24px);padding:0;border:0;border-radius:28px;background:#fff;color:var(--si-ink);box-shadow:0 20px 70px rgba(20,37,66,.2);font:inherit;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+#invite-dialog:not([open]){display:none}#invite-dialog::backdrop{background:rgba(18,32,57,.44);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#invite-dialog *{box-sizing:border-box}#invite-dialog h2,#invite-dialog h3,#invite-dialog p{margin:0}#invite-dialog button,#invite-dialog input,#invite-dialog textarea{font:inherit}
+#invite-dialog button{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}#invite-dialog :is(button,input,textarea){outline-offset:3px}#invite-dialog :is(button,input,textarea):focus-visible{outline:3px solid var(--si-blue)}
+#invite-dialog .si-shell{padding:24px}#invite-dialog .si-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;height:auto;margin-bottom:14px}#invite-dialog .si-kicker{font-size:11px;font-weight:700;line-height:1.4;letter-spacing:1.4px;color:var(--si-blue);margin-bottom:4px}#invite-dialog .si-heading h2{font-size:27px;font-weight:700;line-height:1.3;letter-spacing:-.6px}#invite-dialog .si-close{flex:0 0 44px;width:44px;min-height:44px;border:0;border-radius:15px;background:#eef2f8;color:var(--si-ink);font-size:29px;line-height:1}
+#invite-dialog .si-role-line{display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-size:12px;line-height:1.6;color:#4f6077;margin-bottom:9px}#simple-role{display:inline-flex;align-items:center;max-width:100%;min-height:32px;padding:4px 11px;border:1px solid rgba(255,255,255,.8);border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.48),rgba(255,255,255,.18) 65%,rgba(255,255,255,.36)),var(--si-role-color);box-shadow:inset 0 1px 0 rgba(255,255,255,.55);backdrop-filter:blur(7px) saturate(1.15);-webkit-backdrop-filter:blur(7px) saturate(1.15);color:var(--si-role-ink);font-size:13px;font-weight:700;line-height:1.5}#invite-dialog .si-intro{font-size:14px;line-height:1.7;color:#4f6077;margin-bottom:14px}
+#invite-dialog .si-field-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}#invite-dialog .si-field-row>div{min-width:0}#invite-dialog .si-label{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:12px 0 6px;font-size:13px;font-weight:700;line-height:1.6}#invite-dialog .si-field-row .si-label{margin-top:0}#invite-dialog .si-label>span{flex-shrink:0;font-size:11px;font-weight:400;color:#64758b}
+#invite-dialog .si-input{display:block;width:100%;max-width:100%;min-height:46px;padding:10px 12px;border:1px solid #c4cfe0;border-radius:13px;background:#fff;color:var(--si-ink);font-size:15px;line-height:1.6}#invite-dialog .si-input::placeholder{color:#6b7b91;opacity:1}#invite-dialog .si-input[aria-invalid=true]{border-color:#a83e35}#invite-dialog .si-work{height:84px;min-height:84px;resize:vertical}
+#invite-dialog .si-upload{display:flex;align-items:center;gap:12px;width:100%;min-height:66px;padding:11px 13px;border:0;border-radius:17px;background:#edf2ff;color:#183d99;text-align:left}#invite-dialog .si-upload-icon{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:12px;background:#fff;color:var(--si-blue);font-size:25px;line-height:1}#invite-dialog .si-upload>span:nth-child(2){min-width:0;font-size:14px;font-weight:700;line-height:1.5}#invite-dialog .si-upload small{display:block;margin-top:2px;color:#4f6077;font-size:10px;font-weight:400;line-height:1.5}#invite-dialog .si-upload-arrow{margin-left:auto;font-size:22px;line-height:1}
+#invite-dialog .si-image-preview{position:relative;border-radius:16px;overflow:hidden;background:#eef2f8;margin-top:9px}#invite-dialog .si-image-preview>img{display:block;width:100%;height:112px;object-fit:contain}#invite-dialog .si-image-remove{position:absolute;right:6px;top:6px;display:grid;place-items:center;width:44px;min-height:44px;border:1px solid #d7dfeb;border-radius:14px;background:rgba(255,255,255,.95);color:var(--si-ink);font-size:26px;line-height:1}#invite-dialog .si-image-preview>p{padding:5px 11px 7px;overflow-wrap:anywhere;font-size:11px;line-height:1.5;color:#4f6077}#invite-dialog .si-image-status:empty{display:none}#invite-dialog .si-image-status{margin-top:5px;font-size:12px;line-height:1.6;color:#8b322a}
+#invite-dialog .si-submit{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;min-height:50px;padding:12px 16px;margin-top:16px;border:0;border-radius:16px;background:var(--si-blue);color:#fff;font-size:16px;font-weight:700;line-height:1.5}#invite-dialog .si-submit>span:last-child{font-size:22px;line-height:1}#invite-dialog .si-mode-note{margin-top:8px;font-size:11px;line-height:1.65;color:#64758b}
+#invite-dialog .si-submit-status:empty,#invite-dialog .si-copy-status:empty{display:none}#invite-dialog .si-submit-status{margin-top:8px;font-size:12px;line-height:1.7;color:#354760}#invite-dialog .si-submit-status[data-state=error]{color:#8b322a}#invite-dialog .si-submit-status[data-state=success]{color:#28562e}#invite-dialog .si-receipt{margin-top:4px;font-size:10px;line-height:1.6;color:#64758b;overflow-wrap:anywhere}
+#invite-dialog .si-local-preview{margin-top:14px;padding:15px;border-radius:18px;background:#f1f4fa}#invite-dialog .si-local-preview h3{font-size:17px;line-height:1.4;font-weight:700}#invite-dialog .si-local-preview>p{margin-top:6px;font-size:12px;line-height:1.6;color:#4f6077}#invite-dialog .si-card-text{height:150px;min-height:150px;max-height:280px;margin-top:10px;resize:vertical;font-size:13px;line-height:1.7}
+#invite-dialog .si-direct{margin-top:13px}#invite-dialog .si-copy{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:10px 13px;border:0;border-radius:15px;background:#eff4dd;color:#324512;font-size:13px;font-weight:700;line-height:1.5}#invite-dialog .si-copy>span:last-child{flex-shrink:0;font-size:21px;line-height:1}#invite-dialog .si-copy-status{margin-top:7px;font-size:12px;line-height:1.7;color:#354760}
+#invite-dialog :is(button,input,textarea):disabled{opacity:.66;cursor:wait}#invite-dialog [hidden]{display:none!important}
+@media(max-width:480px){#invite-dialog{width:calc(100% - 20px);border-radius:24px}#invite-dialog .si-shell{padding:17px}#invite-dialog .si-heading{margin-bottom:12px}#invite-dialog .si-heading h2{font-size:24px}#invite-dialog .si-intro{font-size:12px;margin-bottom:12px}#invite-dialog .si-field-row{gap:10px}#invite-dialog .si-label{font-size:12px}#invite-dialog .si-label>span{font-size:10px}#invite-dialog .si-input{font-size:16px;padding:9px 10px}#invite-dialog .si-work{height:78px;min-height:78px}#invite-dialog .si-submit{margin-top:13px}#invite-dialog .si-copy{font-size:12px}#invite-dialog .si-upload{padding:10px 11px}#invite-dialog .si-upload small{font-size:9px}}
+@media(prefers-reduced-transparency:reduce){#invite-dialog::backdrop{backdrop-filter:none;-webkit-backdrop-filter:none}#simple-role{background:var(--si-role-color);backdrop-filter:none;-webkit-backdrop-filter:none}}@supports not (backdrop-filter:blur(7px)){#simple-role{background:var(--si-role-color)}}
+
+  </style>
+<!-- Zinx font license:
+Copyright 2014-2025 Adobe (http://www.adobe.com/), with Reserved Font
+Name 'Source'. Source is a trademark of Adobe in the United States
+and/or other countries.
+
+This Font Software is licensed under the SIL Open Font License,
+Version 1.1.
+
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font
+creation efforts of academic and linguistic communities, and to
+provide a free and open framework in which fonts may be shared and
+improved in partnership with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply to
+any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software
+components as distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to,
+deleting, or substituting -- in part or in whole -- any of the
+components of the Original Version, by changing formats or by porting
+the Font Software to a new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed,
+modify, redistribute, and sell modified and unmodified copies of the
+Font Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components, in
+Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the
+corresponding Copyright Holder. This restriction only applies to the
+primary font name as presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created using
+the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+-->
+<meta property="og:title" content="找队友！有点子，有创意，有审美。">
+<meta property="og:description" content="Zinx 的作品与组队邀请，欢迎带着作品交流，也欢迎赛后继续合作。">
+<meta property="og:url" content="https://zxzin.github.io/sukesong-team/">
+</head>
+<body>
+  <a class="skip" href="#main">跳到介绍</a>
+  <div class="wrap">
+    <header class="page-header">
+      <a class="brand" href="#recruit" aria-label="Zinx">ZINX</a>
+      <nav class="page-nav" aria-label="介绍页导航">
+        <a class="page-link" data-page-link="recruit" href="#recruit" aria-current="page"><span>01</span>找队友</a>
+        <a class="page-link" data-page-link="works" href="#works"><span>02</span>看作品</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="page-view" id="recruit" data-page="recruit" aria-labelledby="hero-title">
+        <div class="recruit-hero">
+          <div>
+            <p class="eyebrow">苏客松 · AI+生活办公</p>
+            <h1 id="hero-title" tabindex="-1" data-page-heading>找队友</h1>
+            <p class="hero-line">有点子，有创意，有审美。</p>
+          </div>
+          <div class="team-principle">
+            <div><p class="eyebrow">团队主旨</p><h2>审美</h2></div>
+            <div class="principle-detail">
+              <p class="principle-caption">团队的共同标准</p>
+              <ul class="principle-points" aria-label="作品的共同标准"><li>好看</li><li>好用</li><li>有新意</li></ul>
+              <p class="principle-note">从产品想法，到每一个交互细节。</p>
+            </div>
+          </div>
+        </div>
+        <div class="recruit-grid">
+          <article class="recruit-card my-card">
+            <div class="card-head"><h2>我能做什么</h2><span>01 / Zinx</span></div>
+            <h3>产品构思 · 交互与视觉<br>Web / AI 应用开发</h3>
+            <p>从想法到可操作的原型，再到测试和演示，我都能动手。做过 YY、Monkex、Zinxcord 等独立产品。</p>
+            <p class="credit">独立主导 HomeGuard，从想法到实现，进入科大讯飞「SpaceMind AI Agent 创新应用大赛」前三强。</p>
+            <a class="card-more" href="#works">下一页，直接看作品 <span class="arrow" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="recruit-card wish-card">
+            <div class="card-head"><h2>希望你带来什么</h2><span>02 / 你</span></div>
+            <ul class="wish-list">
+              <li><span class="wish-index" aria-hidden="true">01</span><strong>有点子</strong><p>能从日常里发现问题，也有新想法。</p></li>
+              <li><span class="wish-index" aria-hidden="true">02</span><strong>有判断</strong><p>对视觉、交互和体验，有自己的审美。</p></li>
+              <li><span class="wish-index" aria-hidden="true">03</span><strong>能动手</strong><p>前端、设计、用户研究、商业化、新媒体，都欢迎。</p></li>
+            </ul>
+            <p class="wish-footnote">能力可以复合，分工一起商量。</p>
+            <div class="interest-label"><span>你感兴趣的方向</span><span>可多选</span></div>
+            <div class="roles" role="group" aria-label="感兴趣的方向，可多选">
+              <button class="role" data-role="frontend" title="前端、创意交互与体验细节" aria-pressed="false">交互手感</button>
+              <button class="role" data-role="design" title="视觉、交互设计与动效" aria-pressed="false">视觉与动效</button>
+              <button class="role" data-role="business" title="用户研究、商业化与产品表达" aria-pressed="false">用户与价值</button>
+              <button class="role" data-role="media" title="选题、图文、短视频与新媒体运营" aria-pressed="false">内容与传播</button>
+            </div>
+            <span id="interest-summary" class="sr-only" aria-live="polite">未选择方向</span>
+          </article>
+        </div>
+        <div class="contact-panel">
+          <div>
+            <h2>带个作品，聊聊你擅长的。</h2>
+            <p>截图、小实验、半成品都可以，附上你做的部分和能力介绍。<br>留下作品与联系方式，我会看过后主动联系；也欢迎直接私聊我。</p>
+            <p class="long-term">先一起完成这次比赛，活动结束后，也欢迎长期合作。</p>
+          </div>
+          <div class="contact-actions"><button class="button" data-open-invite>留作品与联系方式 <span class="arrow" aria-hidden="true">↗</span></button><span>也可以从群里直接找我</span></div>
+        </div>
+      </section>
+      <section class="works page-view" id="works" data-page="works" aria-labelledby="works-title" hidden>
+        <div class="section-top"><div><h2 id="works-title" tabindex="-1" data-page-heading>我做过的一些作品</h2><p>Zinx · 产品、交互与视觉</p></div><span>02 / 作品概览</span></div>
+        <div class="resume-gallery" aria-label="Zinx 的代表作品">
+  <article class="rsg-yy" aria-labelledby="rsg-yy-title">
+    <div class="rsg-heading">
+      <div><h3 id="rsg-yy-title">YY</h3><p>角色 · 产品 · 交互</p></div>
+    </div>
+    <div class="rsg-yy-top">
+      <figure class="rsg-yy-banner"><img src="assets/resume-gallery/yy-banner.jpg" alt="YY 戴着墨镜，坐在泳圈上用电脑的泳池主题画面" width="750" height="400" loading="lazy"><figcaption><strong>场景视觉</strong></figcaption></figure>
+      <figure class="rsg-yy-stickers"><figcaption><strong>表情与情境</strong></figcaption><div class="rsg-sticker-grid"><img src="assets/resume-gallery/yy-pool.png" alt="在泳池里等 AI 的 YY" width="240" height="240" loading="lazy"><img src="assets/resume-gallery/yy-chef.png" alt="戴厨师帽、拿锅铲与菜刀的 YY" width="1254" height="1254" loading="lazy"><img src="assets/resume-gallery/yy-laptop.png" alt="趴在电脑后的疲惫 YY" width="1254" height="1254" loading="lazy"><img src="assets/resume-gallery/yy-build.png" alt="带 Build Everything 字标的 YY 表情作品" width="240" height="240" loading="lazy"></div></figure>
+    </div>
+    <div class="rsg-yy-bottom">
+      <figure class="rsg-character"><div class="rsg-character-pair"><img src="assets/resume-gallery/yy-identity.svg" alt="YY 二维角色母版" width="240" height="240" loading="lazy"><img src="assets/resume-gallery/yy-3d.png" alt="YY 三维风格化角色渲染探索" width="640" height="640" loading="lazy"></div><figcaption>2D / 3D 角色探索</figcaption></figure>
+      <figure class="rsg-wardrobe"><img src="assets/resume-gallery/wardrobe.jpg" alt="歪歪之家真实换装管理界面" width="620" height="660" loading="lazy"><figcaption><strong>换装管理</strong></figcaption></figure>
+      <figure class="rsg-extra-stickers"><div><img src="assets/resume-gallery/yy-tears.png" alt="眼泪小湖 YY 情绪表情" width="512" height="512" loading="lazy"><img src="assets/resume-gallery/yy-water.png" alt="拿水瓶与哑铃的大水薄肌 YY 表情" width="512" height="512" loading="lazy"></div><figcaption>情绪与动作</figcaption></figure>
+      <div class="rsg-companion"><span>结构示意</span><h4>陪伴交互</h4><p>本地模型、会话内记忆与动作反馈。</p></div>
+    </div>
+    <p class="rsg-yy-credit">产品构思 · 角色与交互 · AI 协同实现</p>
+  </article>
+
+  <div class="rsg-products" aria-labelledby="rsg-products-title">
+    <h3 class="rsg-group-title" id="rsg-products-title">产品</h3>
+    <article class="rsg-product rsg-recorder" aria-labelledby="rsg-recorder-title"><div class="rsg-product-heading"><h4 id="rsg-recorder-title">Zinxcord</h4><p>桌面录制</p></div><figure><div class="rsg-product-image"><img src="assets/resume-gallery/zinxcord-record.jpg" alt="Zinxcord 商店展示设计：录制控件与演示窗口" width="1920" height="1200" loading="lazy"></div><figcaption>商店展示 · 演示内容</figcaption></figure><p class="rsg-product-story">录制、订阅与产品视觉。</p><p class="rsg-credit">基于 OpenScreen 二次开发；Codex 协同实现。</p></article>
+    <article class="rsg-product rsg-monkex" aria-labelledby="rsg-monkex-title"><div class="rsg-product-heading"><h4 id="rsg-monkex-title">Monkex</h4><p>AI 任务看板</p></div><figure><div class="rsg-product-image"><img src="assets/resume-gallery/monkex-showcase.png" alt="Monkex 香蕉树与任务看板，画面使用公开示例任务和示例额度" width="1440" height="900" loading="lazy"></div><figcaption>示例任务与额度</figcaption></figure><p class="rsg-product-story">香蕉成熟、采摘与任务反馈。</p><p class="rsg-credit">产品构思 · 状态映射</p></article>
+    <article class="rsg-product rsg-court" aria-labelledby="rsg-court-title"><div class="rsg-product-heading"><h4 id="rsg-court-title">猫猫裁决官</h4><p>iOS / H5</p></div><figure><div class="rsg-product-image"><img src="assets/resume-gallery/cat-home.png" alt="猫猫裁决官真实 iOS 首页：分场景发起问题与底部导航" width="1290" height="2796" loading="lazy"></div><figcaption>分步提问 · 三态表决</figcaption></figure><p class="rsg-product-story">提问、表态与分享流程。</p><p class="rsg-credit">交互设计 · 跨端反馈</p></article>
+  </div>
+
+  <article class="rsg-visual" aria-labelledby="rsg-visual-title">
+    <div class="rsg-heading"><div><h3 id="rsg-visual-title">视觉与交互</h3></div></div>
+    <div class="rsg-screen-ribbon">
+      <figure><img src="assets/resume-gallery/exhibit.jpg" alt="金币展台实际界面：金币作品预览、分类导航与角色入口" width="1184" height="791" loading="lazy"><figcaption><strong>金币展台</strong></figcaption></figure>
+      <figure><img src="assets/resume-gallery/portfolio-entrance.jpg" alt="老虎机作品集主页真实界面：三维场景、拉杆入口和角色布景" width="1280" height="720" loading="lazy"><figcaption><strong>老虎机主页</strong></figcaption></figure>
+    </div>
+    <div class="rsg-art-ribbon">
+      <figure class="rsg-editorial"><img src="assets/resume-gallery/editorial-guide.png" alt="AI 风味指南栏目封面：AI 风味从何而来，黑底与黄绿色视觉" width="1080" height="1440" loading="lazy"><figcaption><strong>AI 风味指南</strong></figcaption></figure>
+      <figure class="rsg-david"><img src="assets/resume-gallery/david-sequence.png" alt="大卫三维动态作品的六个连续关键帧，呈现缠绕、材质变化与破碎" width="1296" height="384" loading="lazy"><figcaption><strong>大卫 · 动态实验</strong></figcaption></figure>
+      <figure class="rsg-style"><img src="assets/resume-gallery/zinx-style-ui.jpg" alt="Zinx 交互视觉实际界面：圆角拼接、鲜明配色与玻璃选中态" width="728" height="785" loading="lazy"><figcaption><strong>交互视觉</strong></figcaption></figure>
+    </div>
+    <p class="rsg-source-note">大卫：SMK · CC0 形体；材质、眼带、灯光、场景与影像为个人创作。六帧来自同一作品。</p>
+  </article>
+</div>
+
+        <div class="works-actions"><span>带上你的作品，也聊聊我们能一起做什么。</span><div><a class="button secondary" href="#recruit">← 回招募页</a><button class="button" data-open-invite>留作品与联系方式 <span class="arrow" aria-hidden="true">↗</span></button></div></div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>Zinx · 苏客松组队</span><span>10.30—11.01 · 苏州</span></footer>
+  </div>
+  <dialog id="invite-dialog" aria-labelledby="simple-invite-title">
+  <div class="si-shell">
+    <header class="si-heading"><div><p class="si-kicker">苏客松 2026</p><h2 id="simple-invite-title">组队资料</h2></div><button class="si-close" type="button" data-simple-close aria-label="关闭组队资料">×</button></header>
+    <p class="si-role-line">感兴趣的事 <span id="simple-role">未选择方向</span></p>
+    <p class="si-intro">留一个作品或能力介绍和联系方式，我会看过后主动联系。也可以直接私聊，活动结束后也欢迎继续合作。</p>
+    <form id="simple-invite-form" method="dialog" novalidate>
+      <div class="si-field-row">
+        <div><label class="si-label" for="buddy-name">称呼<span>选填</span></label><input class="si-input" id="buddy-name" name="name" type="text" maxlength="40" autocomplete="nickname" placeholder="怎么称呼你"></div>
+        <div><label class="si-label" for="buddy-contact">微信或邮箱<span id="simple-contact-hint">选填</span></label><input class="si-input" id="buddy-contact" name="contact" type="text" maxlength="160" autocomplete="off" placeholder="微信号或邮箱地址"></div>
+      </div>
+      <label class="si-label" for="buddy-image">作品截图<span>1 张，选填</span></label>
+      <input id="buddy-image" name="screenshot" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" hidden>
+      <button class="si-upload" id="simple-image-pick" type="button" aria-controls="buddy-image"><span class="si-upload-icon" aria-hidden="true">＋</span><span>选择图片<small>PNG / JPG / WebP · 最大 2 MB</small></span><span class="si-upload-arrow" aria-hidden="true">↗</span></button>
+      <div class="si-image-preview" id="simple-image-preview" hidden><img id="simple-image" alt="作品截图预览"><button class="si-image-remove" id="simple-image-remove" type="button" aria-label="移除作品截图">×</button><p id="simple-image-name"></p></div>
+      <p class="si-image-status" id="simple-image-status" role="status" aria-live="polite"></p>
+      <label class="si-label" for="buddy-work">作品链接 / 个人贡献<span>选填</span></label>
+      <textarea class="si-input si-work" id="buddy-work" name="work" maxlength="700" placeholder="填写作品链接，或简述个人贡献。"></textarea>
+      <button class="si-submit" id="simple-submit" type="submit"><span id="simple-submit-label">预览资料</span><span aria-hidden="true">↗</span></button>
+      <p class="si-mode-note" id="simple-mode-note">资料暂未发送，可复制后私聊。</p>
+      <p class="si-submit-status" id="simple-submit-status" role="status" aria-live="polite"></p>
+      <p class="si-receipt" id="simple-receipt" hidden></p>
+    </form>
+    <section class="si-local-preview" id="simple-local-preview" aria-labelledby="simple-preview-title" hidden><h3 id="simple-preview-title">资料预览</h3><p>暂未发送，可先复制后私聊。</p><textarea class="si-input si-card-text" id="simple-card-text" readonly aria-label="组队资料，可手动复制" spellcheck="false"></textarea></section>
+    <div class="si-direct"><button class="si-copy" id="simple-copy" type="button"><span>复制资料，直接私聊</span><span aria-hidden="true">↗</span></button><p class="si-copy-status" id="simple-copy-status" role="status" aria-live="polite"></p></div>
+  </div>
+</dialog>
+
+  <script>
+    (function () {
+  'use strict';
+
+  const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
+  const IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
+  function validateImageFile(file) {
+    if (!file) return { ok: true };
+    if (!IMAGE_TYPES.includes(String(file.type || '').trim().toLowerCase())) return { ok: false, error: '请选择 PNG、JPEG 或 WebP 图片。' };
+    if (!Number.isFinite(file.size) || file.size <= 0) return { ok: false, error: '图片为空，请重新选择。' };
+    if (file.size > MAX_IMAGE_BYTES) return { ok: false, error: '图片超过 2 MB，请换一张较小的截图，或直接留作品链接。' };
+    return { ok: true };
+  }
+  function hasValidReceipt(httpOk, body) {
+    return httpOk === true && Boolean(body) && typeof body === 'object' && !Array.isArray(body) &&
+      body.ok === true && typeof body.receipt === 'string' && body.receipt.trim().length > 0;
+  }
+  function normalizeEndpoint(value) {
+    try {
+      const raw = typeof value === 'string' ? value.trim() : '';
+      if (!raw || raw.includes('__')) return '';
+      const url = new URL(raw);
+      const local = ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
+      if (url.username || url.password || (url.protocol !== 'https:' && !(url.protocol === 'http:' && local))) return '';
+      url.hash = '';
+      return url.href;
+    } catch (_) { return ''; }
+  }
+  function collectionFailureMessage(code) {
+    const messages={
+      IMAGE_TOO_LARGE:'图片处理后超过 2 MB，请换一张较小的截图，或直接留作品链接。',
+      BODY_TOO_LARGE:'图片请控制在 2 MB 以内，或直接留作品链接。',
+      IMAGE_INVALID:'这张图片无法完整打开，请换一张截图。',
+      IMAGE_TYPE_INVALID:'请选择真实的 PNG、JPEG 或 WebP 图片。',
+      RATE_LIMITED:'提交较频繁，请稍后再试，也可以直接在群里私聊我。',
+      REQUEST_CONFLICT:'此份资料已经提交过，请修改填写内容后重新提交。',
+      RECEIVER_NOT_READY:'收件入口暂时不可用，资料已保留，也可以复制后私聊。'
+    };
+    return Object.hasOwn(messages,code)?messages[code]:'未确认资料已收到。已保留填写内容，请重试。';
+  }
+  if (typeof module === 'object' && module.exports) module.exports = { MAX_IMAGE_BYTES, validateImageFile, hasValidReceipt, normalizeEndpoint, collectionFailureMessage };
+  if (typeof window === 'undefined') return;
+
+  let previousMount = null;
+  window.mountSimpleInvite = function mountSimpleInvite({ getRole, collectionEndpoint } = {}) {
+    if (previousMount) previousMount.destroy();
+    const dialog = document.getElementById('invite-dialog');
+    if (!dialog) throw new Error('Simple invite requires #invite-dialog.');
+    const find = id => dialog.querySelector('#' + id);
+    const form = find('simple-invite-form'), roleNode = find('simple-role');
+    const nameInput = find('buddy-name'), contactInput = find('buddy-contact'), workInput = find('buddy-work');
+    const fileInput = find('buddy-image'), pickImage = find('simple-image-pick'), removeImage = find('simple-image-remove');
+    const previewImage = find('simple-image'), previewBox = find('simple-image-preview'), imageName = find('simple-image-name'), imageStatus = find('simple-image-status');
+    const submitButton = find('simple-submit'), submitLabel = find('simple-submit-label'), submitStatus = find('simple-submit-status'), receiptNode = find('simple-receipt');
+    const localPreview = find('simple-local-preview'), previewTitle = find('simple-preview-title'), previewNote = localPreview.querySelector('p');
+    const cardText = find('simple-card-text'), copyButton = find('simple-copy'), copyStatus = find('simple-copy-status');
+    const controller = new AbortController();
+    const listen = (node, type, handler) => node.addEventListener(type, handler, { signal: controller.signal });
+    let opener = null, endpoint = '', selectedFile = null, previewUrl = '', imageVersion = 0;
+    let isSubmitting = false, imageLoading = false, destroyed = false, pendingRequest = null;
+    let payloadRevision = 0, preparedRequest = null;
+    let activeRole = { label: '未选择方向', color: '#dfe8ff', ink: '#183d99' };
+
+    function status(message, state = '') {
+      submitStatus.textContent = message;
+      submitStatus.dataset.state = state;
+    }
+    function makeCard() {
+      const name = nameInput.value.trim() || '未填写';
+      const work = workInput.value.trim() || (selectedFile ? '见作品截图。' : '未填写');
+      const screenshot = selectedFile ? `\n\n作品截图：${selectedFile.name}\n（请在私聊时手动附图）` : '';
+      return `苏客松组队资料\n\n称呼：${name}\n感兴趣的事：${activeRole.label}\n作品链接 / 个人贡献：\n${work}${screenshot}`;
+    }
+    function markChanged() {
+      payloadRevision += 1;
+      status('');
+      receiptNode.hidden = true;
+      receiptNode.textContent = '';
+      copyStatus.textContent = '';
+      if (!localPreview.hidden) cardText.value = makeCard();
+    }
+    function setCollectionEndpoint(value) {
+      endpoint = normalizeEndpoint(value);
+      contactInput.required = Boolean(endpoint);
+      contactInput.setAttribute('aria-required', String(Boolean(endpoint)));
+      find('simple-contact-hint').textContent = endpoint ? '必填' : '选填';
+      submitLabel.textContent = endpoint ? '提交资料' : '预览资料';
+      find('simple-mode-note').textContent = endpoint ? '资料仅由 Zinx 查看，用于组队与合作沟通。' : '资料暂未发送，可复制后私聊。';
+      return Boolean(endpoint);
+    }
+    function refreshRole() {
+      const next = typeof getRole === 'function' ? getRole() : null;
+      const label = next && typeof next.label === 'string' && next.label.trim() ? next.label.trim() : '未选择方向';
+      const changed = activeRole.label !== label;
+      activeRole = { label, color: next && typeof next.color === 'string' ? next.color : '#dfe8ff', ink: next && typeof next.ink === 'string' ? next.ink : '#183d99' };
+      roleNode.textContent = label;
+      dialog.style.setProperty('--si-role-color', activeRole.color);
+      dialog.style.setProperty('--si-role-ink', activeRole.ink);
+      if (changed) markChanged();
+      return activeRole;
+    }
+    function showLocalCard() {
+      localPreview.hidden = false;
+      previewTitle.textContent = '资料预览';
+      previewNote.textContent = '暂未发送，可先复制后私聊。';
+      cardText.value = makeCard();
+    }
+    function setBusy(busy) {
+      isSubmitting = busy;
+      [nameInput, contactInput, workInput, fileInput, pickImage, removeImage].forEach(node => { node.disabled = busy; });
+      submitButton.disabled = busy || imageLoading;
+      form.setAttribute('aria-busy', String(busy));
+    }
+    function requestId() {
+      if (!preparedRequest || preparedRequest.revision !== payloadRevision) {
+        const id = window.crypto && typeof window.crypto.randomUUID === 'function' ? window.crypto.randomUUID() : `invite-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 14)}`;
+        preparedRequest = { revision: payloadRevision, id };
+      }
+      return preparedRequest.id;
+    }
+    function open(trigger) {
+      opener = trigger instanceof HTMLElement ? trigger : document.activeElement;
+      refreshRole();
+      if (!dialog.open) dialog.showModal();
+      dialog.scrollTop = 0;
+      dialog.querySelector('[data-simple-close]').focus({ preventScroll: true });
+    }
+    function close() { if (dialog.open) dialog.close(); }
+
+    listen(document, 'click', event => {
+      const trigger = event.target instanceof Element ? event.target.closest('[data-open-invite]') : null;
+      if (trigger) { event.preventDefault(); open(trigger); }
+    });
+    dialog.querySelectorAll('[data-simple-close]').forEach(button => listen(button, 'click', close));
+    listen(dialog, 'close', () => { if (opener instanceof HTMLElement && opener.isConnected) opener.focus({ preventScroll: true }); });
+    listen(dialog, 'click', event => {
+      if (event.target !== dialog) return;
+      const r = dialog.getBoundingClientRect();
+      if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) close();
+    });
+    [nameInput, contactInput, workInput].forEach(input => listen(input, 'input', () => { input.removeAttribute('aria-invalid'); markChanged(); }));
+    listen(pickImage, 'click', () => fileInput.click());
+    listen(fileInput, 'change', async () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const version = ++imageVersion;
+      fileInput.value = '';
+      const validation = validateImageFile(file);
+      if (!validation.ok) {
+        imageLoading = false;
+        submitButton.disabled = isSubmitting;
+        imageStatus.textContent = validation.error;
+        return;
+      }
+      const candidateUrl = URL.createObjectURL(file);
+      imageLoading = true;
+      submitButton.disabled = true;
+      try {
+        const probe = new Image();
+        const loaded = new Promise((resolve, reject) => { probe.onload = resolve; probe.onerror = reject; });
+        probe.src = candidateUrl;
+        await loaded;
+        if (destroyed || version !== imageVersion) { URL.revokeObjectURL(candidateUrl); return; }
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        previewUrl = candidateUrl;
+        selectedFile = file;
+        previewImage.src = previewUrl;
+        previewImage.alt = '作品截图预览：' + file.name;
+        imageName.textContent = file.name;
+        previewBox.hidden = false;
+        imageStatus.textContent = '';
+        markChanged();
+      } catch (_) {
+        URL.revokeObjectURL(candidateUrl);
+        if (!destroyed && version === imageVersion) imageStatus.textContent = '无法打开该图片，请重新选择。';
+      } finally {
+        if (!destroyed && version === imageVersion) { imageLoading = false; submitButton.disabled = isSubmitting; }
+      }
+    });
+    listen(removeImage, 'click', () => {
+      imageVersion += 1;
+      imageLoading = false;
+      selectedFile = null;
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = '';
+      previewImage.removeAttribute('src');
+      previewImage.alt = '作品截图预览';
+      imageName.textContent = '';
+      previewBox.hidden = true;
+      imageStatus.textContent = '';
+      fileInput.value = '';
+      submitButton.disabled = isSubmitting;
+      markChanged();
+      pickImage.focus();
+    });
+
+    listen(form, 'submit', async event => {
+      event.preventDefault();
+      if (isSubmitting || imageLoading) return;
+      refreshRole();
+      if (!endpoint) { showLocalCard(); status('暂未发送，可先复制后私聊。', 'preview'); return; }
+      contactInput.removeAttribute('aria-invalid');
+      workInput.removeAttribute('aria-invalid');
+      if (!contactInput.value.trim()) {
+        contactInput.setAttribute('aria-invalid', 'true');
+        status('请填写微信号或邮箱。', 'error');
+        contactInput.focus();
+        return;
+      }
+      if (!selectedFile && !workInput.value.trim()) {
+        workInput.setAttribute('aria-invalid', 'true');
+        status('请添加作品截图或填写作品链接 / 个人贡献。', 'error');
+        workInput.focus();
+        return;
+      }
+      const body = new FormData();
+      body.append('name', nameInput.value.trim());
+      body.append('contact', contactInput.value.trim());
+      body.append('role', activeRole.label);
+      body.append('work', workInput.value.trim());
+      body.append('request_id', requestId());
+      if (selectedFile) body.append('screenshot', selectedFile, selectedFile.name);
+      const currentEndpoint = endpoint;
+      const abort = new AbortController();
+      pendingRequest = abort;
+      const timeout = window.setTimeout(() => abort.abort(), 30000);
+      setBusy(true);
+      receiptNode.hidden = true;
+      status('正在提交资料…', 'pending');
+      try {
+        const response = await fetch(currentEndpoint, { method: 'POST', body, credentials: 'omit', headers: { Accept: 'application/json' }, signal: abort.signal });
+        let result = null;
+        try { result = await response.json(); } catch (_) {}
+        if (!hasValidReceipt(response.ok, result)) {
+          const error=new Error('Receipt unconfirmed');
+          error.publicMessage=collectionFailureMessage(result&&result.error&&result.error.code);
+          throw error;
+        }
+        if (destroyed) return;
+        status('资料已收到，我会看过后联系你。', 'success');
+        receiptNode.textContent = '收件号：' + result.receipt.trim();
+        receiptNode.hidden = false;
+        localPreview.hidden = true;
+      } catch (error) {
+        if (!destroyed) status(error.publicMessage||collectionFailureMessage(), 'error');
+      } finally {
+        window.clearTimeout(timeout);
+        if (pendingRequest === abort) pendingRequest = null;
+        if (!destroyed) setBusy(false);
+      }
+    });
+    listen(copyButton, 'click', async () => {
+      refreshRole();
+      const text = makeCard();
+      cardText.value = text;
+      try {
+        if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(text);
+        copyStatus.textContent = selectedFile ? '文字已复制。截图请在私聊时手动附上。' : '资料已复制，可直接私聊发送。';
+      } catch (_) {
+        showLocalCard();
+        previewTitle.textContent = '资料预览';
+        previewNote.textContent = selectedFile ? '请复制下方文字，并在私聊时手动附图。' : '请复制下方资料后私聊发送。';
+        cardText.focus();
+        cardText.select();
+        cardText.setSelectionRange(0, cardText.value.length);
+        copyStatus.textContent = selectedFile ? '文字已选中，请手动复制并附图。' : '文字已选中，请手动复制后私聊发送。';
+      }
+    });
+
+    setCollectionEndpoint(collectionEndpoint);
+    refreshRole();
+    const api = { open, close, refreshRole, setCollectionEndpoint, destroy() {
+      destroyed = true;
+      controller.abort();
+      if (pendingRequest) pendingRequest.abort();
+      imageVersion += 1;
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      if (previousMount === api) previousMount = null;
+    } };
+    previousMount = api;
+    return api;
+  };
+})();
+
+    (function (root) {
+  'use strict';
+  const choices = Object.freeze({
+    frontend: { label: '交互手感', color: '#d9f064', ink: '#253a0b' },
+    design: { label: '视觉与动效', color: '#ffc4d9', ink: '#552439' },
+    business: { label: '用户与价值', color: '#bde8ff', ink: '#143e60' },
+    media: { label: '内容与传播', color: '#ffd6a5', ink: '#633b12' }
+  });
+  function createInterestMix() {
+    const selected = new Set();
+    function snapshot() {
+      const keys = Array.from(selected);
+      const labels = keys.map(key => choices[key].label);
+      const accent = choices[keys[keys.length - 1]] || choices.design;
+      return { keys, labels, label: labels.join(' / ') || '未选择方向', color: accent.color, ink: accent.ink };
+    }
+    return {
+      snapshot,
+      toggle(key) {
+        if (Object.prototype.hasOwnProperty.call(choices, key)) {
+          if (selected.has(key)) selected.delete(key);
+          else selected.add(key);
+        }
+        return snapshot();
+      }
+    };
+  }
+  if (typeof module === 'object' && module.exports) module.exports = { choices, createInterestMix };
+  if (root) { root.recruitmentInterests = choices; root.createInterestMix = createInterestMix; }
+})(typeof window === 'undefined' ? null : window);
+
+    (function(root){
+  'use strict';
+  function pageFromHash(hash){return hash==='#works'?'works':'recruit';}
+  function mountRecruitmentPages({document,window}){
+    const panels=Array.from(document.querySelectorAll('[data-page]'));
+    const links=Array.from(document.querySelectorAll('[data-page-link]'));
+    function render(moveFocus){
+      const current=pageFromHash(window.location.hash);
+      panels.forEach(panel=>{
+        const active=panel.dataset.page===current;
+        panel.hidden=!active;
+        if(active&&moveFocus){
+          const heading=panel.querySelector('[data-page-heading]');
+          if(heading)heading.focus({preventScroll:true});
+        }
+      });
+      links.forEach(link=>{
+        if(link.dataset.pageLink===current)link.setAttribute('aria-current','page');
+        else link.removeAttribute('aria-current');
+      });
+      if(moveFocus)window.scrollTo({top:0,left:0,behavior:'instant'});
+    }
+    window.addEventListener('hashchange',()=>render(true));
+    render(false);
+  }
+  root.mountRecruitmentPages=mountRecruitmentPages;
+  if(typeof module==='object'&&module.exports)module.exports={pageFromHash,mountRecruitmentPages};
+})(typeof window==='object'?window:globalThis);
+
+    (()=>{
+      'use strict';
+      const mix=window.createInterestMix();
+      const summary=document.getElementById('interest-summary');
+      function renderInterests(){
+        const current=mix.snapshot();
+        document.querySelectorAll('[data-role]').forEach(button=>{
+          const choice=window.recruitmentInterests[button.dataset.role];
+          button.setAttribute('aria-pressed',String(current.keys.includes(button.dataset.role)));
+          button.style.setProperty('--choice-color',choice.color);
+          button.style.setProperty('--choice-ink',choice.ink);
+        });
+        summary.replaceChildren(document.createTextNode(current.labels.length?'已选择：'+current.labels.join('、'):'未选择方向'));
+      }
+      document.querySelectorAll('[data-role]').forEach(button=>button.addEventListener('click',()=>{mix.toggle(button.dataset.role);renderInterests();}));
+      renderInterests();
+      window.mountRecruitmentPages({document,window});
+      window.mountSimpleInvite({getRole:()=>mix.snapshot(),collectionEndpoint:"https://sesame-court-cn-test-d0a5c775e4d-1302399745.ap-shanghai.app.tcloudbase.com/api/partners"});
+    })();
+  </script>
+</body>
+</html>
